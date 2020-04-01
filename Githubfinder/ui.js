@@ -4,6 +4,27 @@ class UI{
   }
   // display profile
   showprofile(user){
+    let user_company='';
+    let user_website='';
+    let user_location='';
+    if(user.company === null){
+      user_company = "No company linked";
+    }
+    else{
+      user_company=user.company;
+    }
+    if(user.website === undefined){
+      user_website = "No Websites linked";
+    }
+    else{
+      user_website=user.website;
+    }
+    if(user.location === null){
+      user_location = "Location Not Updated by user";
+    }
+    else{
+      user_location=user.location;
+    }
     this.profile.innerHTML=`
     <div class="card card-body mb-3">
       <div class="row">
@@ -18,9 +39,9 @@ class UI{
           <span class="badge badge-info">Following: ${user.following}</span>
           <br><br>
           <ul class="list-items">
-            <li class="list-group-item">Company: ${user.company}</li>
-            <li class="list-group-item">Website: ${user.website}</li>
-            <li class="list-group-item">Location: ${user.location}</li>
+            <li class="list-group-item">Company: ${user_company}</li>
+            <li class="list-group-item">Website: ${user_website}</li>
+            <li class="list-group-item">Location: ${user_location}</li>
             <li class="list-group-item">Member Since: ${user.created_at}</li>
           </ul>
         </div>

@@ -3,11 +3,23 @@ const github=new Github;
 // init UI
 const ui=new UI;
 
+// debounce function
+const debounce = (fn, time) => {
+    let timeout;
+  
+    return function() {
+      const functionCall = () => fn.apply(this, arguments);
+      
+      clearTimeout(timeout);
+      timeout = setTimeout(functionCall, time);
+    }
+  }
+
 // search input
 const searchUser=document.getElementById('searchuser');
 
 // search input event listner
-searchUser.addEventListener('keyup', e =>{
+searchUser.addEventListener('keyup',debounce( e =>{
 
     // get user text
     const userText=e.target.value;
@@ -23,6 +35,7 @@ searchUser.addEventListener('keyup', e =>{
                 // show profile
                 ui.showprofile(data.profile);
                 ui.showrepos(data.repos);
+                console.log(data.profile);
             }
         })
     }
@@ -31,4 +44,5 @@ searchUser.addEventListener('keyup', e =>{
         ui.clearprofile();
     }
 
-});
+},1000));
+
