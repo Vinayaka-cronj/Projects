@@ -1,0 +1,6 @@
+@media(max-width: 360){
+  #countryList{
+    margin: 0;
+    padding: 0;
+  }
+}
